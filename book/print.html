@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sTeX documentation</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="accounts.html"><strong aria-hidden="true">2.</strong> Accounts</a></li><li class="chapter-item expanded "><a href="documents.html"><strong aria-hidden="true">3.</strong> Documents</a></li><li class="chapter-item expanded "><a href="tokenisation.html"><strong aria-hidden="true">4.</strong> Tokenisation</a></li><li class="chapter-item expanded "><a href="marketplace.html"><strong aria-hidden="true">5.</strong> Marketplace</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sTeX documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction-to-the-stex-api"><a class="header" href="#introduction-to-the-stex-api">Introduction to the sTeX API</a></h1>
+<p>This documentation will allow you to manage your account and your documents through our API, and also serves the need of explaining more about how sTeX works in all its technical details.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="manage-your-account"><a class="header" href="#manage-your-account">Manage your account</a></h1>
+<h3 id="obtaining-the-auth-token"><a class="header" href="#obtaining-the-auth-token">Obtaining the Auth Token</a></h3>
+<p>sTeX's auth mechanism relies on the so called <code>sauth</code> or <code>stellar_auth</code>, which simply is the result of an encryption between a private user key and a temporary signature. It is called stellar auth because once the app verifies the validity of a <code>sauth</code>, it returns the stellar secret key of the user's account (remember sTeX is a centralised and custodial service).</p>
+<p>To obtain this token, you'll currently have to make a request as follows:</p>
+<pre><code>POST /signin
+
+{
+	&quot;email&quot;: YOUR_EMAIL,
+	&quot;password&quot;: YOUR_PASSWORD
+}
+</code></pre>
+<p>We understand this isn't a best practice for an API, thus are considering the idea of allowing to create API auth tokens.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="managing-your-documents"><a class="header" href="#managing-your-documents">Managing your documents</a></h1>
+<h3 id="listing-all-documents"><a class="header" href="#listing-all-documents">Listing all documents</a></h3>
+<pre><code>GET /documents
+
+Auth: YOUR_AUTH_TOKEN
+</code></pre>
+<h3 id="create-new-document"><a class="header" href="#create-new-document">Create new document</a></h3>
+<pre><code>POST /document/new
+
+Auth: YOUR_AUTH_TOKEN
+</code></pre>
+<p>This simply creates a document entry under the user in our database. Title and contents are set through the <a href="documents.html#edit-document">edit document section</a>. </p>
+<p>This request returns the id of the document.</p>
+<h3 id="edit-document"><a class="header" href="#edit-document">Edit document</a></h3>
+<h4 id="content"><a class="header" href="#content">Content</a></h4>
+<pre><code>POST /document/edit/:document_id
+
+Auth: YOUR_AUTH_TOKEN
+
+
+{
+    &quot;target&quot;:&quot;content&quot;,
+    &quot;content&quot;: LATEX_CODE
+}
+</code></pre>
+<h4 id="name"><a class="header" href="#name">Name</a></h4>
+<pre><code>POST /document/edit/:document_id
+
+Auth: YOUR_AUTH_TOKEN
+
+
+{
+    &quot;target&quot;:&quot;name&quot;,
+    &quot;content&quot;: NAME
+}
+</code></pre>
+<h3 id="read-document"><a class="header" href="#read-document">Read document</a></h3>
+<pre><code>GET /document/:document_id
+
+Auth: YOUR_AUTH_TOKEN
+</code></pre>
+<h3 id="delete-document"><a class="header" href="#delete-document">Delete document</a></h3>
+<pre><code>POST /document/:document_id/delete
+
+Auth: YOUR_AUTH_TOKEN
+
+</code></pre>
+<h3 id="share-document"><a class="header" href="#share-document">Share document</a></h3>
+<pre><code>POST /document/:document_id/share
+
+Auth: YOUR_AUTH_TOKEN
+
+{
+	&quot;invited&quot;: EMAIL,
+	&quot;role&quot;: &quot;editor&quot; | &quot;reader&quot;
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="document-tokenisation"><a class="header" href="#document-tokenisation">Document Tokenisation</a></h1>
+<p>Document tokenisation is very important is sTeX, but what exactly is happening as we tokenise a document we have written? This is a high-level description of how that works.</p>
+<h4 id="1-auth-verificaton"><a class="header" href="#1-auth-verificaton">1. Auth verificaton</a></h4>
+<p>This is a step that takes place in all of the described API endpoints, were the backend verifies the validity of the provided auth token.</p>
+<h4 id="2-building-the-transaction"><a class="header" href="#2-building-the-transaction">2. Building the transaction</a></h4>
+<p>Tokenisation happens as soon as we submit transaction to the Stellar network with the following operations:</p>
+<ul>
+<li>creating the document on chain (remember that the document keypair already exists)</li>
+<li>add the specified holder as the only signer of the document (this makes sure everything after the tokenisation is completely decentralised and non custodial)</li>
+<li>adding the hash of the contents to the document account as data attribute.
+This transaction also has some sponsoring ops to make the process smoother which we are not specifiying for simplicity.</li>
+</ul>
+<h4 id="4-tokenise-sending-the-transaction"><a class="header" href="#4-tokenise-sending-the-transaction">4. Tokenise: sending the transaction</a></h4>
+<p>This process, which is completed client-side so the user can confirm the transaction, consists of simply sending the transaction to the network.</p>
+<h3 id="tokenise-a-document"><a class="header" href="#tokenise-a-document">Tokenise a document</a></h3>
+<pre><code>POST /stellar/bridge/detach
+
+Auth: YOUR_AUTH_TOKEN
+
+{
+    &quot;id&quot;: DOCUMENT_ID,
+    &quot;holder&quot;: HOLDER_PUBLIC_KEY
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-stex-decentralised-marketplace"><a class="header" href="#the-stex-decentralised-marketplace">The sTeX decentralised marketplace</a></h1>
+<p>A more detailed specification of the marketplace and the degree of decentralisation it offers is currently being written, but below is how the invokation for basic trading of documents through the marketplace looks like.</p>
+<h3 id="make-a-sell-offer-for-a-document"><a class="header" href="#make-a-sell-offer-for-a-document">Make a sell offer for a document</a></h3>
+<p>Invoke the contract with the following body:</p>
+<pre><code class="language-json">{
+    &quot;timebounds&quot;:{&quot;minTime&quot;:TIME_STAMP,&quot;maxTime&quot;:TIME_STAMP},
+    &quot;fee&quot;:FEE,
+    &quot;action&quot;:&quot;sellOffer&quot;,
+    &quot;sellerPK&quot;: SELLER_PUBLIC_KEY,
+    &quot;price&quot;: DOCUMENT_PRICE,
+    &quot;documentPK&quot;: DOCUMENT_ID
+}
+</code></pre>
+<h3 id="make-a-buy-offer-for-a-document"><a class="header" href="#make-a-buy-offer-for-a-document">Make a buy offer for a document</a></h3>
+<p>Invoke the contract with the following body:</p>
+<pre><code class="language-json">{
+    &quot;timebounds&quot;:{&quot;minTime&quot;:TIME_STAMP,&quot;maxTime&quot;:TIME_STAMP},
+    &quot;fee&quot;:FEE,
+    &quot;action&quot;:&quot;buyOffer&quot;,
+    &quot;buyerPK&quot;: SELLER_PUBLIC_KEY,
+    &quot;documentPK&quot;: DOCUMENT_ID
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>

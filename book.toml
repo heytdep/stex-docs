@@ -1,0 +1,6 @@
+[book]
+authors = ["hensis"]
+language = "en"
+multilingual = false
+src = "src"
+title = "sTeX documentation"
